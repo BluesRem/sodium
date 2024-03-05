@@ -2,7 +2,22 @@
 name = "sodium"
 version = "0.1.0"
 description = "Add your description here"
-dependencies = []
+dependencies = [
+    "adbutils>=2.2.1",
+    "appium-python-client>=3.2.1",
+    "assertpy>=1.1",
+    "extcolors>=1.0.0",
+    "mimesis>=15.1.0",
+    "pixelmatch>=0.3.0",
+    "pydantic>=2.6.3",
+    "pytesseract>=0.3.10",
+    "pytest>=8.0.2",
+    "pytest-html>=4.1.1",
+    "pytest-order>=1.2.0",
+    "rich>=13.7.1",
+    "tenacity>=8.2.3",
+    "orjson>=3.9.15",
+]
 readme = "README.md"
 requires-python = ">= 3.8"
 
