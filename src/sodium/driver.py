@@ -1,7 +1,8 @@
 import re
 import typing
 
-from adbutils import AdbClient, WindowSize
+from adbutils import AdbClient, WindowSize, RunningAppInfo
+from adbutils._proto import AppInfo
 from appium import webdriver
 from appium.options.common import AppiumOptions
 
@@ -237,15 +238,41 @@ class Driver:
         """
         return self._adb.wlan_ip()
 
-    def get_bluetooth_name(self):
+    def get_bluetooth_name(self) -> str:
         """
         获取蓝牙名称
-        :return:
+        Returns:
+
         """
         value = re.search(
             re.compile("name: (.+)\n"), self.shell("dumpsys bluetooth_manager")
         ).group(1)
         return value
+
+    def get_screen_brightness(self) -> int:
+        """
+        获取屏幕亮度
+        :return:
+        """
+        value = int(self.shell("settings get system screen_brightness"))
+        return value
+
+    def get_app_info(self, package_name: str) -> typing.Optional[AppInfo]:
+        """
+        获取应用信息
+        Args:
+            package_name:
+
+        Returns:
+
+        """
+        return self._adb.app_info(package_name)
+
+    def get_current_app(self) -> RunningAppInfo:
+        """
+        获取当前应用
+        """
+        return self._adb.app_current()
 
     def shell(self, cmdargs: typing.Union[str, list, tuple],
               timeout: typing.Optional[float] = None) -> str:
